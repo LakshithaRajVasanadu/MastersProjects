@@ -1,0 +1,124 @@
+
+make -f makefile
+
+./server 16000 0.25 0
+
+./client 127.0.0.1 16000 inputFile outputFile 0.5 0.3
+
+// Inputs
+1) Small Input
+2) Large Input
+3) Empty Input
+4) Input with interrupt
+5) Binary Input
+6) Demo above with varying probabilities of corruption - dup data, dup ACK
+7) With packet loss - ACK, dup
+
+rm server client
+make -f makefile
+
+No corruption, NO loss
+1) Small Input
+./server 16000 0 0
+./client 127.0.0.1 16000 small_input.txt small_output.txt 0 0
+diff small_input.txt small_output.txt
+ls -lah small_input.txt small_output.txt
+
+2) Small binary input
+./server 16000 0 0
+./client 127.0.0.1 16000 small_binary_input.bin small_binary_output.bin 0 0
+diff small_binary_input.bin small_binary_output.bin
+ls -lah small_binary_input.bin small_binary_output.bin
+
+3) Medium Text Input
+./server 16000 0 0
+./client 127.0.0.1 16000 medium_input.txt medium_output.txt 0 0
+diff medium_input.txt medium_output.txt
+ls -lah medium_input.txt medium_output.txt
+
+4) Empty Input
+./server 16000 0 0
+./client 127.0.0.1 16000 empty_input.txt empty_output.txt 0 0
+diff empty_input.txt empty_output.txt
+ls -lah empty_input.txt empty_output.txt
+
+Corruption
+1) Server - no corruption, client - corruption (Duplicate ACK)
+./server 16000 0 0
+./client 127.0.0.1 16000 medium_input.txt medium_output.txt 0.2 0
+diff medium_input.txt medium_output.txt
+ls -lah medium_input.txt medium_output.txt
+
+2) Server - corruption, client-no corruption (Duplicate Data)
+./server 16000 0.5 0
+./client 127.0.0.1 16000 empty_input.txt empty_output.txt 0 0
+diff empty_input.txt empty_output.txt
+ls -lah empty_input.txt empty_output.txt
+
+3) Server, client - both corruption - Text input
+./server 16000 0.5 0
+./client 127.0.0.1 16000 medium_input.txt medium_output.txt 0.6 0
+diff medium_input.txt medium_output.txt
+ls -lah medium_input.txt medium_output.txt
+
+4) Server, client - both corruption - Binary Input
+./server 16000 0.2 0
+./client 127.0.0.1 16000 small_binary_input.bin small_binary_output.bin 0.3 0
+diff small_binary_input.bin small_binary_output.bin
+ls -lah small_binary_input.bin small_binary_output.bin
+
+PACKET LOSS (NO CORRUPTION)
+1) Server - no loss, client - loss
+./server 16000 0 0
+./client 127.0.0.1 16000 medium_input.txt medium_output.txt 0 0.2
+diff medium_input.txt medium_output.txt
+ls -lah medium_input.txt medium_output.txt
+
+2) Server - no loss, client - more loss
+./server 16000 0 0
+./client 127.0.0.1 16000 medium_input.txt medium_output.txt 0 0.8
+diff medium_input.txt medium_output.txt
+ls -lah medium_input.txt medium_output.txt
+
+3) Server - loss, client - no loss (Dup data)
+./server 16000 0 0.5
+./client 127.0.0.1 16000 empty_input.txt empty_output.txt 0 0
+diff empty_input.txt empty_output.txt
+ls -lah empty_input.txt empty_output.txt
+
+4) Server, client - both loss - Text Input
+./server 16000 0 0.5
+./client 127.0.0.1 16000 medium_input.txt medium_output.txt 0 0.6
+diff medium_input.txt medium_output.txt
+ls -lah medium_input.txt medium_output.txt
+
+5) Server, client - both loss - Binary Input
+./server 16000 0 0.2
+./client 127.0.0.1 16000 small_binary_input.bin small_binary_output.bin 0 0.3
+diff small_binary_input.bin small_binary_output.bin
+ls -lah small_binary_input.bin small_binary_output.bin
+
+BOTH PACKET LOSS AND CORRUPTION
+1) Server - no loss, no corruption, Client - both (Dup ACK)
+./server 16000 0 0
+./client 127.0.0.1 16000 medium_input.txt medium_output.txt 0.3 0.2
+diff medium_input.txt medium_output.txt
+ls -lah medium_input.txt medium_output.txt
+
+2) Server - both, client - no loss, no corruption
+./server 16000 0.5 0.2
+./client 127.0.0.1 16000 medium_input.txt medium_output.txt 0 0
+diff medium_input.txt medium_output.txt
+ls -lah medium_input.txt medium_output.txt
+
+3) Server - both, client - both (Text Input) (Dup data + ACK)
+./server 16000 0.5 0.2
+./client 127.0.0.1 16000 medium_input.txt medium_output.txt 0.3 0.75
+diff medium_input.txt medium_output.txt
+ls -lah medium_input.txt medium_output.txt
+
+4) Server - both, client - both (Binary Input)
+./server 16000 0.23 0.6
+./client 127.0.0.1 16000 medium_input.txt medium_output.txt 0.15 0.57
+diff small_binary_input.bin small_binary_output.bin
+ls -lah small_binary_input.bin small_binary_output.bin

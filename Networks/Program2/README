@@ -1,0 +1,80 @@
+
+make -f makefile
+
+./server 16000 0.25
+
+./client 127.0.0.1 16000 inputFile outputFile 0.5
+
+// Inputs
+1) Small Input
+2) Large Input
+3) Empty Input
+4) Input with interrupt
+5) Binary Input
+6) Demo above with varying probabilities of corruption - dup data, dup ACK
+
+rm server client
+make -f makefile
+
+No corruption
+1) Small Input
+./server 16000 0
+./client 127.0.0.1 16000 small_input.txt small_output.txt 0
+diff small_input.txt small_output.txt
+ls -lah small_input.txt small_output.txt
+
+2) Small binary input
+./server 16000 0
+./client 127.0.0.1 16000 small_binary_input.bin small_binary_output.bin 0
+diff small_binary_input.bin small_binary_output.bin
+ls -lah small_binary_input.bin small_binary_output.bin
+
+3) Huge Text Input
+./server 16000 0
+./client 127.0.0.1 16000 huge_input.txt huge_output.txt 0
+diff huge_input.txt huge_output.txt
+ls -lah huge_input.txt huge_output.txt
+
+4) Empty Input
+./server 16000 0
+./client 127.0.0.1 16000 empty_input.txt empty_output.txt 0
+diff empty_input.txt empty_output.txt
+ls -lah empty_input.txt empty_output.txt
+
+5) Huge Binary File with Interrupt
+./server 16000 0
+./client 127.0.0.1 16000 binary_input.bin binary_output.bin 0
+Ctrl+C
+ls -lah binary_input.bin binary_output.bin
+
+Corruption
+1) Server - no corruption, client - corruption (Duplicate ACK)
+./server 16000 0
+./client 127.0.0.1 16000 medium_input.txt medium_output.txt 0.2
+diff medium_input.txt medium_output.txt
+ls -lah medium_input.txt medium_output.txt
+
+2) Server - no corruption, client - more corruption
+./server 16000 0
+./client 127.0.0.1 16000 medium_input.txt medium_output.txt 0.8
+diff medium_input.txt medium_output.txt
+ls -lah medium_input.txt medium_output.txt
+
+3) Server - corruption, client-no corruption (Duplicate Data)
+./server 16000 0.5
+./client 127.0.0.1 16000 empty_input.txt empty_output.txt 0
+diff empty_input.txt empty_output.txt
+ls -lah empty_input.txt empty_output.txt
+
+4) Server, client - both corruption - Text input
+./server 16000 0.5
+./client 127.0.0.1 16000 medium_input.txt medium_output.txt 0.6
+diff medium_input.txt medium_output.txt
+ls -lah medium_input.txt medium_output.txt
+
+5) Server, client - both corruption - Binary Input
+./server 16000 0.2
+./client 127.0.0.1 16000 small_binary_input.bin small_binary_output.bin 0.3
+diff small_binary_input.bin small_binary_output.bin
+ls -lah small_binary_input.bin small_binary_output.bin
+

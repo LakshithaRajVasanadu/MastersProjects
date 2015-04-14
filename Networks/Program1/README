@@ -1,0 +1,20 @@
+cc server.c -o server
+./server localhost(127.0.0.1) 15000
+
+cc client.c -o client
+./client 127.0.0.1 15000 input output
+
+diff input output
+ls -lah input output
+
+// To find a process on port number
+lsof -t -i:<portnum>
+
+kill -9 pid
+
+Inputs :
+1) Small input < 5 bytes
+2) Huge input > 10 bytes
+3) Binary input
+4) Empty Input
+5) Huge input, an interrupt on client side. Server should terminate gracefully.
