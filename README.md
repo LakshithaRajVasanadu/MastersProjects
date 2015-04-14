@@ -18,3 +18,19 @@ Big Data :
 Technologies :  Java, Hadoop, MapReduce, Weka, Mahout
 
 Platform : Linux
+
+Secure Coding:
+
+Security Vulnerabilities Lab and Programming (Secure Coding in C and C++)
+Used SEED labs for computer system security education
+
+Objectives of the Lab:
+- Grasping security principles, concepts, and technologies
+- Applying security principles to design and implement security mechanisms
+- Analyzing and testing systems for security properties
+- Applying security principles to solve real-world problems
+- Lab Assignments include  Set-UID Program Vulnerability Lab, Buffer Overflow Vulnerability Lab, Return-to-libc Attack Lab, Format String Vulnerability Lab.
+
+Languages : C, C++
+Platform : Linux                                                                                                                                                       
+
