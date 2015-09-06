@@ -1,0 +1,23 @@
+1. Define a string like using either literal or here document, for example
+
+str = <<EOS
+Facebook and its founder must release documents and electronic correspondence to a defense lawyer whose client has fled from criminal charges that he falsely claimed a majority ownership in the social media giant, a federal judge said Friday.
+
+EOS
+
+ 
+
+then write a method to calculate number of occurrence  of any given word
+
+ 
+
+2. Define an array of student record, for example, 
+
+students = [ {:firstname => "John", :lastname => "LastnameJohn",  :phonenumber => 123456789}, 
+{:firstname => "Ken", :lastname => "Lastnameken",  :phonenumber => 456734244}, 
+{:firstname => "Marisa", :lastname => "lastnamemarisa",  :phonenumber => 443234567}, ]
+{:firstname => "Ken", :lastname => "Kenlastname",  :phonenumber => 456734244}, 
+
+write a method to be able to query student,
+
+for example find all the record with first name = Ken

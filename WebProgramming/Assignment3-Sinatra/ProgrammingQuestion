@@ -1,0 +1,49 @@
+Basically, the goal of the assignment, is to create a web site using Sinatra.
+
+The application will be able to show list of students, add students, edit student information,
+
+delete students. and also there will be a logon page.
+
+ 
+
+part 1.  Use the sample code as an example, create the home page similar to sample code,
+
+            with several menu options. like for example, home, about, contact, students 
+
+ 
+
+            create several route handlers and corresponding erb views. 
+            ( you can also try slim view too)
+
+ 
+
+part 2. add database functions. 
+
+         
+    write code similar to the sample code on Tuesday (week7), 
+    add datatbase functions to to create functions for listing, adding, 
+
+    editing, deleting, students 
+
+
+ part3. add a logon page
+
+ 
+
+    follow the sample page, add login page. in sample page login page is loaded from url by typing
+
+   localhost:4567/login
+
+ 
+
+  you need to change that, so the login page can come up not by typing in URL
+
+ 
+
+part 4. deploy your application to Heroku
+
+ 
+
+   follow the deployment procedure content under week7 module, deploy your application
+
+  to Heroku server.

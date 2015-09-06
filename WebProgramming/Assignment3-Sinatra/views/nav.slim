@@ -1,0 +1,8 @@
+nav
+  ul
+    li <a href="/" title="Home">Home</a>
+    li <a href="/about" title="About">About</a>
+    li <a href="/contact" title="Contact">Contact</a>
+    li <a href="/students" title="Students">Students</a>
+    - if session[:admin]==true
+      li id="logout" <a href="/logout" title="Logout">Logout</a>

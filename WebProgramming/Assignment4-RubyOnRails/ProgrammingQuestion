@@ -1,0 +1,19 @@
+Use Ruby-on-Rails framework to build an online bookstore website.
+
+The website have these functionalities:
+
+ 
+
+ 
+
+1. List all books (with book cover images), show individual book info
+
+2. search books.
+
+3. add/edit/delete books.
+
+4. login page to be able to do the #3 function
+
+5. add to shopping cart, show shopping card for list of items selected.
+
+6. check out the selected items.

@@ -1,0 +1,146 @@
+Questions
+
+write a class, this class is like this:
+
+when you create a object of this class, it will take a pair of chars as surrounding chars and any number of strings.  it will put the surrounding chars to each string. and safe the result in a string as the state of the object.
+
+for example, assuming the name of this class is Enclose, 
+
+then you can create an object of this class and provide surrounding chars like this:
+ 
+
+       obj = Enclose.new(“<“, “>”, “i”, “love”, “you”)
+
+ 
+
+      then the object will hold an instance variable (array) with this value:
+
+ 
+
+            ["<I>", "<love>", "<you>"]
+
+ 
+
+      you can also reset the instance variable by calling
+
+ 
+
+        obj.set(“<“, “>”, “i”, “love”, “you”, “very”, “much”)
+
+ 
+
+   then the object will hold an instance variable with this value:
+
+ 
+
+            ["<I>", "<love>", “<you>”, “<very”>, “<much>”]
+
+ 
+
+      then add an singleton method to this object, the method will reverse the order of the instance variable
+
+ 
+
+ 
+
+2.  write a class for compressing a string. when you create an object of this class, you provide a string, then the object save the compressed result as the state of the  object. the compressed result will have two arrays:  an array for strings and index.
+
+ 
+
+     for example:  assuming the name of your class is Compress
+
+ 
+
+     to create an object, you can call like this:
+
+ 
+
+           obj = Compress.new(“i love you but do you love me”)
+
+ 
+
+     then there will be two instance variables created inside the object
+
+ 
+
+           [“i”, “love”, “you”, “but”, “do”, “me”]            # no duplicate word (compressed)
+
+           [0, 1, 2, 3, 4, 2, 1, 5]                                        # index to the above array to  represent original string
+                                                            
+
+ 
+
+     you should check these two variables using getter method
+
+ 
+
+        
+
+3.  rewrite the above 2 programs, using class method and class instance variable to provide the same functionalities
+
+     use a different class name
+
+ 
+
+4.  one of the method in Array class is collect, it will return an array with values returned by block. for example:
+
+ 
+
+        [1,2,3,4,5].collect { |x| x*x }   
+
+ 
+
+    will return [1,4,9,16,25]   because each time the block get each element in x and return x*x
+
+ 
+
+    the collect! version will change the object, for example
+
+     a = [1,2,3,4,5]
+
+     a.collect! { |x| x*x }    # a will become [1,4,9,16,25]
+
+ 
+
+    open the class Array, re-implement these two methods.   to check your result, you can make them different than
+    the standard version
+
+ 
+
+ 
+
+5. Enumerable is a standard module (a standard mixin), it provide lots of methods for class that 
+
+    include that. like for example reverse_each, inject.  The class that include it, must provide a method "each",
+
+    which yield successive member of the collection
+
+
+    In your program for program 2,  define a "each" method in your class, so that the object will return each string in the
+
+    original string by using the compressed array and index array.
+
+ 
+
+    then include Enumerable into your class and use reverse_each, inject (to find the longest 
+    word, and to concatenate all word into string), you can also use any other methods provided my Enumerable.
+
+ 
+
+    you can define a class with different name
+
+ 
+
+Requirement:   
+
+ 
+
+create each class definition in the above question in separate .rb file.
+
+then create a main.rb file to uses these definitions in different files to create object or call method to produce
+
+your results. 
+
+ 
+
+write comment in your file to example things.
