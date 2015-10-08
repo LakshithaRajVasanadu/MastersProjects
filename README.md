@@ -1,5 +1,21 @@
 # MastersProjects
 
+Web Programming:
+- Online Book Store
+--- Developed an online bookstore website.
+--- Supports CRUD operations, admin page, login page.
+--- Supports addition of items to shopping cart and checkout as well.
+    Technologies : Ruby, Ruby on Rails (RoR), CSS
+
+- Student Center Portal
+--- Developed an online portal for student center.
+--- Supports CRUD operations and Login feature.
+--- Deployed using Heroku.
+    URL : https://lakshithastudentapp.herokuapp.com/
+    Username : admin
+    Password: a 
+    Technologies: Ruby, Sinatra, CSS, Heroku, Github
+
 Networks :
 Implemented file copy (text and binary) between client and server over reliable and unreliable channels. It includes the following :
 - Simple File Transfer Protocol – Reliable Transfer over a Reliable Channel
